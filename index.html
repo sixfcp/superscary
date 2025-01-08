@@ -23,9 +23,36 @@
     </style>
 </head>
 <body>
-    <video controls autoplay loop muted>
+    <video id="video" controls autoplay loop muted>
         <source src="https://github.com/sixfcp/superscary/raw/refs/heads/main/jumpscare%20(3).mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        // Get the video element
+        const video = document.getElementById('video');
+
+        // Make sure the video is unmuted and at max volume
+        video.muted = false;  // Unmute the video
+        video.volume = 1.0;   // Set the volume to max
+
+        // Function to enter fullscreen mode
+        function enterFullscreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+
+        // Wait for the video to be ready and then go fullscreen
+        video.oncanplay = function() {
+            enterFullscreen();
+        };
+    </script>
 </body>
 </html>
