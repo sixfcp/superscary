@@ -8,18 +8,22 @@
         /* Make the video take up the whole screen */
         body, html {
             margin: 0;
+            padding: 0;
             height: 100%;
             overflow: hidden;
         }
         video {
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover; /* Ensures the video fills the screen without distortion */
         }
     </style>
 </head>
 <body>
-    <video controls autoplay loop>
+    <video controls autoplay loop muted>
         <source src="https://github.com/sixfcp/superscary/raw/refs/heads/main/jumpscare%20(3).mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
