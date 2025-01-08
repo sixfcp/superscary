@@ -32,12 +32,13 @@
         // Get the video element
         const video = document.getElementById('video');
 
-        // Make sure the video is unmuted and at max volume
-        video.muted = false;  // Unmute the video
-        video.volume = 1.0;   // Set the volume to max
+        // Function to unmute and enter fullscreen when user interacts
+        function startVideo() {
+            // Unmute the video
+            video.muted = false;
+            video.volume = 1.0;  // Set the volume to max
 
-        // Function to enter fullscreen mode
-        function enterFullscreen() {
+            // Enter fullscreen mode
             if (video.requestFullscreen) {
                 video.requestFullscreen();
             } else if (video.mozRequestFullScreen) { // Firefox
@@ -49,10 +50,14 @@
             }
         }
 
-        // Wait for the video to be ready and then go fullscreen
+        // Wait for the video to be ready and then unmute and fullscreen
         video.oncanplay = function() {
-            enterFullscreen();
+            // Automatically call startVideo after a brief delay (important for autoplay restrictions)
+            setTimeout(startVideo, 500);
         };
+
+        // Add a click event listener for user interaction to trigger fullscreen
+        document.body.addEventListener('click', startVideo);
     </script>
 </body>
 </html>
